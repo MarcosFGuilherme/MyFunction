@@ -18,14 +18,19 @@ public class Program {
 		showProduct(list);
 		
 		ProductService ps = new ProductService();
-		double sum =  ps.filteredSum(list);
+		//ps.setCriteria(p -> p.getName().charAt(0) == 'T');
+		//ps.setCriteria(p -> p.getName().charAt(0) == 'M');
+		//ps.setCriteria(p -> p.getPrice() <= 100.0);
+		ps.setCriteria(p -> p.getPrice() >= 100.0);
 		
+		//double sum =  ps.filteredSum(list, p -> p.getName().charAt(0) == 'T');
+		double sum =  ps.filteredSum(list);
 		
 		System.out.println("Sum products only letter initial = [T]");
 		showProduct(ps.filterList(list));
 		System.out.println("Total sum : " + String.format("%.2f", sum));
 		
-		
+
 	}
 	public static void showProduct(List<Product> list) {
 		list.sort((p1,p2)-> p1.getPrice().compareTo(p2.getPrice()));
